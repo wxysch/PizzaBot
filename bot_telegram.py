@@ -1,5 +1,6 @@
 from aiogram.utils import executor
 from create_bot import dp
+from data_base import sqlite_db
 
 from handlers import client, admin, other
 
@@ -9,5 +10,6 @@ other.register_message_other(dp)
 
 async def on_startup(_):
     print('Бот вышел в онлайн')
+    sqlite_db.sql_start()
 
 executor.start_polling(dp,skip_updates=True, on_startup=on_startup)
